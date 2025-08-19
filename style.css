@@ -1,212 +1,169 @@
-/* Đặt layout tổng thể */
-/* Căn giữa toàn bộ trang */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Căn giữa toàn bộ nội dung */
-    justify-content: center; /* Căn giữa theo chiều dọc */
-    min-height: 100vh; /* Chiều cao tối thiểu bằng chiều cao cửa sổ */
-}
-
-/* Container bao gồm nội dung */
-.container {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center; /* Căn giữa toàn bộ nội dung */
-}
-
-/* Header với logo */
-.header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.logo {
-    max-width: 250px; /* Tăng kích thước logo */
-    height: auto;
-    display: block;
-    margin: 0 auto; /* Căn giữa logo */
-}
-
-/* Form elements */
-p {
-    font-size: 16px;
-    color: #555;
-    margin: 5px 0;
-}
-
-input[type="file"], input[type="number"] {
-    font-size: 14px;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 250px;
-}
-
-button {
-    font-size: 14px;
-    padding: 10px 20px;
-    margin: 5px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-.upload-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.upload-box {
-    flex: 1;
-    text-align: center;
-}
-
-input[type="file"] {
-    display: block;
-    margin: 0 auto;
-}
-/* Trạng thái file upload */
-.upload-status {
-    display: block;
-    font-size: 14px;
-    margin-top: 5px;
-    color: #28a745; /* Màu xanh lá cây */
-    font-weight: bold;
-}
-/* Ẩn input file mặc định */
-input[type="file"] {
-    display: none;
-}
-
-/* Kiểu dáng cho box upload */
-.upload-label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 250px;
-    height: 40px;
-    border: 2px dashed #007bff;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    cursor: pointer;
-    font-size: 14px;
-    color: #555;
-    text-align: center;
-    transition: background-color 0.3s, border-color 0.3s;
-    overflow: hidden; /* Đảm bảo nội dung không tràn ra */
-}
-
-.upload-label:hover {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #0056b3;
-}
-
-.upload-label span {
-    pointer-events: none; /* Ngăn chặn hành động nhấn vào nội dung */
-    text-overflow: ellipsis; /* Xử lý nội dung dài */
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100%;
-    text-align: center;
-}
-
-/* Trạng thái file upload */
-.upload-status {
-    display: block;
-    font-size: 14px;
-    margin-top: 5px;
-    color: #28a745;
-    font-weight: bold;
-}
-
-/* Căn giữa các box upload trong container */
-.upload-container {
-    display: flex;
-    justify-content: center; /* Căn giữa các box nằm ngang */
-    align-items: center; /* Căn giữa nội dung theo chiều dọc trong mỗi box */
-    gap: 30px; /* Khoảng cách giữa hai box */
-    margin-bottom: 20px; /* Khoảng cách dưới */
-}
-/* Căn giữa các box upload trong container */
-.upload-container {
-    display: flex;
-    justify-content: center; /* Căn giữa toàn bộ các box */
-    align-items: flex-start; /* Căn trên cùng để nội dung bên trong không bị lệch */
-    gap: 30px; /* Khoảng cách giữa các box */
-    margin-bottom: 20px; /* Khoảng cách dưới */
-}
-
-/* Kiểu dáng box upload */
-.upload-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 250px; /* Đảm bảo tất cả box có cùng chiều rộng */
-}
-
-/* Kiểu dáng cho box */
-.upload-label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Chiều rộng theo box cha */
-    height: 50px; /* Đảm bảo chiều cao cố định */
-    border: 2px dashed #007bff;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    cursor: pointer;
-    font-size: 14px;
-    color: #555;
-    text-align: center;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-.upload-label:hover {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #0056b3;
-}
-
-.upload-label span {
-    pointer-events: none; /* Ngăn nhấn vào nội dung */
-    text-overflow: ellipsis; /* Cắt nội dung quá dài */
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100%;
-    text-align: center;
-}
-
-/* Trạng thái file upload */
-.upload-status {
-    margin-top: 10px; /* Tạo khoảng cách giữa box và trạng thái */
-    font-size: 14px;
-    color: #28a745;
-    font-weight: bold;
-    text-align: center;
-}
+/* ===== Material Design 3 – Tokens ===== */
+:root{
+    --md3-primary: #4f46e5;         /* Indigo 600 */
+    --md3-on-primary: #ffffff;
+    --md3-primary-container:#e0e7ff;/* Indigo 100 */
+    --md3-on-primary-container:#1e1b4b;
+  
+    --md3-surface: #ffffff;
+    --md3-on-surface: #1f1f23;
+    --md3-outline: #d1d5db;
+  
+    --radius-lg: 16px;
+    --radius-md: 12px;
+  
+    --shadow-1: 0 2px 8px rgba(0,0,0,.06);
+    --shadow-2: 0 10px 24px rgba(0,0,0,.12);
+  }
+  
+  *{box-sizing:border-box}
+  body{
+    font-family: 'Roboto Flex', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg,#f3f4ff 0%,#eef4ff 100%);
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    color:var(--md3-on-surface);
+  }
+  
+  /* Surface chính */
+  .container.md3-surface{
+    width:100%;
+    max-width: 980px;
+    background: var(--md3-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-2);
+    padding: 28px;
+    text-align:center;
+  }
+  
+  /* Logo */
+  .header{margin-bottom: 8px;}
+  .logo{max-width:220px;height:auto;display:block;margin:0 auto 8px}
+  
+  /* Typography ngắn gọn */
+  .md3-title{
+    font-weight:600;
+    font-size:18px;
+    margin:0 0 12px;
+  }
+  
+  /* Card upload */
+  .upload-container{
+    display:flex;
+    gap:24px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin: 10px 0 20px;
+  }
+  .md3-card{
+    width: 360px;
+    background:#fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-1);
+    padding: 20px 18px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .md3-card:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
+  
+  /* Nhãn upload theo MD3 */
+  .upload-label{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+    height:64px;
+    border-radius: var(--radius-md);
+    border: 1.5px dashed var(--md3-primary);
+    color:#6b7280;
+    background: #f8fafc;
+    cursor:pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease, outline-color .2s ease;
+  }
+  .upload-label .material-symbols-rounded{font-size:26px;line-height:1}
+  .upload-label:hover{
+    background: var(--md3-primary-container);
+    color: var(--md3-on-primary-container);
+    border-color: var(--md3-primary);
+  }
+  .upload-label.dragover{ outline: 3px solid #4f46e5; background:#eef2ff }
+  
+  /* Dấu tích thành công */
+  .upload-label .tick{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family: 'Material Symbols Rounded'; font-size:28px; color:#16a34a; opacity:0; transition:opacity .2s ease;
+  }
+  .upload-label.success{
+    border-style: solid;
+    border-color: #16a34a1f;
+    background: #e7f7ec;
+    color:#16a34a;
+  }
+  .upload-label.success .material-symbols-rounded{font-variation-settings: 'FILL' 1}
+  .upload-label.success .tick{ opacity:1 }
+  
+  /* Trạng thái & phản hồi */
+  .upload-status{
+    display:block;
+    margin-top:10px;
+    font-size:14px;
+    font-weight:600;
+    color:#9ca3af;
+    min-height:20px;
+    text-align:center;
+  }
+  .upload-status.ok{ color:#16a34a; }
+  
+  /* Buttons – MD3 Filled & Tonal */
+  .md3-btn{
+    appearance:none; border:none; cursor:pointer;
+    padding: 12px 18px; border-radius: 999px; font-weight:600;
+    transition: transform .15s ease, opacity .15s ease, box-shadow .15s ease;
+  }
+  .md3-btn:disabled{opacity:.5; cursor:not-allowed}
+  .md3-btn--filled{
+    background: var(--md3-primary);
+    color: var(--md3-on-primary);
+    box-shadow: var(--shadow-1);
+  }
+  .md3-btn--filled:hover{ transform: translateY(-1px); }
+  .md3-btn--tonal{
+    background: var(--md3-primary-container);
+    color: var(--md3-on-primary-container);
+  }
+  .actions{margin: 8px 0 10px;}
+  .split{margin-top:10px}
+  input[type="number"]{
+    width: 240px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--md3-outline);
+    padding: 0 12px;
+    font-size: 15px;
+    margin: 8px 10px 12px;
+    outline: none;
+  }
+  input[type="number"]:focus{
+    border-color: var(--md3-primary);
+    box-shadow: 0 0 0 3px #4f46e51a;
+  }
+  
+  /* Progress MD3 */
+  .md3-progress{ width: 100%; max-width: 520px; height: 4px; margin:12px auto 0; background:#e5e7eb; border-radius:999px; overflow:hidden }
+  .md3-progress .bar{ width:100%; height:100%; background: linear-gradient(90deg,#4f46e5,#7c3aed); animation: indet 1.2s linear infinite; transform:translateX(-100%) }
+  @keyframes indet{ 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+  
+  /* Snackbar */
+  .md3-snackbar{
+    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(120%);
+    background: #111827; color:#fff; padding:12px 16px; border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.25); transition: transform .25s ease, opacity .25s ease;
+    opacity:0; font-weight:600; max-width: 90vw; text-align:center; z-index: 1000;
+  }
+  .md3-snackbar.show{ transform: translateX(-50%) translateY(0); opacity:1; }
+  

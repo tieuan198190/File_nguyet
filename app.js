@@ -58,35 +58,30 @@ document.getElementById("splitFiles").addEventListener("click", () => {
 
 // Hàm chia dữ liệu và tải xuống
 function splitAndDownload(data, numParts) {
-    // Xáo trộn dữ liệu ngẫu nhiên
-    const shuffledData = data.sort(() => Math.random() - 0.5);
-
-    // Chia dữ liệu thành `numParts` phần
-    const parts = [];
-    const partSize = Math.ceil(shuffledData.length / numParts);
+    // không làm thay đổi mảng gốc
+    const shuffled = [...data].sort(() => Math.random() - 0.5);
+  
+    // Tạo 1 workbook và thêm nhiều sheet
+    const wb = XLSX.utils.book_new();
+    const partSize = Math.ceil(shuffled.length / numParts);
+  
     for (let i = 0; i < numParts; i++) {
-        const start = i * partSize;
-        const end = start + partSize;
-        const part = shuffledData.slice(start, end);
-
-        // Sắp xếp từng phần theo "Mã" sau khi chia
-        const sortedPart = part.sort((a, b) => {
-            if (a["Mã"] < b["Mã"]) return -1;
-            if (a["Mã"] > b["Mã"]) return 1;
-            return 0;
-        });
-
-        parts.push(sortedPart);
+      const start = i * partSize;
+      const end = start + partSize;
+      const part = shuffled.slice(start, end).sort((a, b) => {
+        const maA = (a["Mã"] || "").toString();
+        const maB = (b["Mã"] || "").toString();
+        return maA.localeCompare(maB, "vi");
+      });
+  
+      const ws = XLSX.utils.json_to_sheet(part);
+      XLSX.utils.book_append_sheet(wb, ws, `Part_${i + 1}`);
     }
-
-    // Tải xuống từng phần
-    parts.forEach((part, index) => {
-        const fileName = `Split_Part_${index + 1}.xlsx`;
-        exportToExcel(part, fileName);
-    });
-
-    alert(`${numParts} files have been created and downloaded.`);
-}
+  
+    // Chỉ 1 lần tải xuống => không bị block
+    XLSX.writeFile(wb, `Split_${numParts}_parts.xlsx`);
+  }
+  
 
 // Hàm xuất dữ liệu ra file Excel
 function exportToExcel(data, fileName) {

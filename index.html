@@ -1,46 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combine and Export Excel</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link đến file CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CÔ MẬP – Xử lý dữ liệu</title>
+
+  <!-- Google Fonts & Material Symbols (MD3) -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="container">
-        <!-- Thay thế tiêu đề bằng logo -->
-        <div class="header">
-            <img src="comap-logo.jpg" alt="Company Logo" class="logo">
-        </div>
-        
-        <div class="upload-container">
-            <div class="upload-box">
-                <p>Mã TPOS</p>
-                <label for="inputFile1" class="upload-label">
-                    <span id="file1Name">No file chosen</span>
-                </label>
-                <input type="file" id="inputFile1" accept=".xlsx" hidden />
-                <span id="file1Status" class="upload-status"></span>
-            </div>
-            <div class="upload-box">
-                <p>File Comment Khách Hàng</p>
-                <label for="inputFile2" class="upload-label">
-                    <span id="file2Name">No file chosen</span>
-                </label>
-                <input type="file" id="inputFile2" accept=".xlsx" hidden />
-                <span id="file2Status" class="upload-status"></span>
-            </div>
-        </div>
-        
-        <button id="processFiles">Xử Lý Dữ Liệu</button>
-        <button id="downloadFile" disabled>Tải Dữ Liệu Đã Xử Lý</button><br><br>
-
-        <p>Nhập Số Phần Bạn Muốn Chia</p>
-        <input type="number" id="numParts" placeholder="Enter number of parts" min="1" /><br><br>
-        <button id="splitFiles" disabled>Tải Xuống Các File Đã Chia</button>
+  <div class="container md3-surface">
+    <div class="header">
+      <img src="comap-logo.jpg" alt="Company Logo" class="logo">
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="app.js"></script>
+    <div class="upload-container">
+      <!-- Box 1 -->
+      <div class="upload-box md3-card">
+        <p class="md3-title">Mã TPOS</p>
+
+        <!-- Label theo MD3: mặc định icon upload; khi success sẽ chỉ còn dấu tích -->
+        <label for="inputFile1" class="upload-label" id="labelFile1">
+          <span class="material-symbols-rounded icon" aria-hidden="true">cloud_upload</span>
+          <span class="upload-text">Chọn file</span>
+        </label>
+        <input type="file" id="inputFile1" accept=".xlsx" hidden />
+
+        <span id="file1Status" class="upload-status" aria-live="polite"></span>
+      </div>
+
+      <!-- Box 2 -->
+      <div class="upload-box md3-card">
+        <p class="md3-title">File Comment Khách Hàng</p>
+
+        <label for="inputFile2" class="upload-label" id="labelFile2">
+          <span class="material-symbols-rounded icon" aria-hidden="true">cloud_upload</span>
+          <span class="upload-text">Chọn file</span>
+        </label>
+        <input type="file" id="inputFile2" accept=".xlsx" hidden />
+
+        <span id="file2Status" class="upload-status" aria-live="polite"></span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="processFiles" class="md3-btn md3-btn--filled">Xử Lý Dữ Liệu</button>
+      <button id="downloadFile" class="md3-btn md3-btn--tonal" disabled>Tải Dữ Liệu Đã Xử Lý</button>
+    </div>
+
+    <div class="split">
+      <p>Nhập Số Phần Bạn Muốn Chia</p>
+      <input type="number" id="numParts" placeholder="Nhập số phần" min="1"/>
+      <button id="splitFiles" class="md3-btn md3-btn--filled" disabled>Tải Xuống Các File Đã Chia</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // --- MD3: Hiển thị dấu tích khi chọn file, KHÔNG hiện tên file ---
+    function bindUpload(idInput, idLabel, idStatus) {
+      const input  = document.getElementById(idInput);
+      const label  = document.getElementById(idLabel);
+      const status = document.getElementById(idStatus);
+
+      input.addEventListener('change', () => {
+        if (input.files && input.files.length > 0) {
+          // chuyển label sang trạng thái thành công
+          label.classList.add('success');
+          label.querySelector('.icon').textContent = 'check_circle';
+          label.querySelector('.upload-text').style.display = 'none'; // ẩn chữ, chỉ còn dấu tích
+
+          status.textContent = 'Tải Lên Thành Công!';
+          status.classList.add('ok');
+        } else {
+          // reset
+          label.classList.remove('success');
+          label.querySelector('.icon').textContent = 'cloud_upload';
+          label.querySelector('.upload-text').style.display = '';
+          status.textContent = '';
+          status.classList.remove('ok');
+        }
+      });
+    }
+    bindUpload('inputFile1','labelFile1','file1Status');
+    bindUpload('inputFile2','labelFile2','file2Status');
+    
+  </script>
 </body>
 </html>
